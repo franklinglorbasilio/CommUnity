@@ -66,7 +66,7 @@ export default function Homepages() {
             <ParticleNetwork />
             <section className="d-flex align-items-center" style={{ minHeight: "100vh", width: "100vw" }}>
                 <div className="container text-center text-lg-start" style={{ color: "rgba(255,255,255,0.85)" }}>
-                    <div className="row align-items-center mt-5">
+                    <div className="row align-items-center">
                         <div className="col-12 col-lg-6 mb-4 mb-lg-0">
                             <h1 className="fw-bold display-4" style={{color: "rgba(255,255,255,0.85)"}}>
                                 Welcome to Our Comm<span className="animated-text">Unity</span>
