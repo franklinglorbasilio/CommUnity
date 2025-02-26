@@ -1,0 +1,21 @@
+*{
+    color: #787878;
+}
+.animated-text {
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    /* Apply a sliding gradient background */
+    background: linear-gradient(90deg, #3498db, black, white);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: slideColors 30s linear infinite;
+}
+
+/* The keyframes create a sliding effect */
+@keyframes slideColors {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
