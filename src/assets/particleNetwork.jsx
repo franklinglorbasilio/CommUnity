@@ -146,7 +146,7 @@ function ParticleNetwork() {
                 width: "100%",
                 height: "150vh",
                 zIndex: -1,
-                background: "#000"
+                background: "#000" // black background
             }}
         />
     );

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import LogoSite from "../../assets/community-icon.png"
 import "bootstrap/dist/css/bootstrap.min.css";
 import ParticleNetwork from "../../assets/particleNetwork.jsx";
 
@@ -10,6 +11,13 @@ const testimonials = [
 ];
 
 function AnimatedCard({ testimonial, cardKey }) {
+    useEffect(() => {
+        document.title = "CommUnity";
+        const favicon = document.querySelector("link[rel='icon']");
+        if (favicon) {
+            favicon.href = LogoSite;
+        }
+    }, []);
     return (
         <div
             key={cardKey}
@@ -64,11 +72,12 @@ export default function Homepages() {
           }
         `}
             </style>
+            <ParticleNetwork />
             <section className="d-flex align-items-center" style={{ minHeight: "100vh", width: "100vw" }}>
-                <div className="container text-center text-lg-start" style={{ color: "rgba(255,255,255,0.85)" }}><ParticleNetwork />
+                <div className="container text-center text-lg-start" style={{ color: "rgba(255,255,255,0.85)" }}>
                     <div className="row align-items-center">
-                        <div className="col-12 col-lg-6 mb-4 mb-lg-0">
-                            <h1 className="fw-bold display-4" style={{color: "rgba(255,255,255,0.85)"}}>
+                        <div className="col-12 col-lg-6 mb-4 mb-lg-0 pt-5">
+                            <h1 className="fw-bold display-4 pt-5" style={{color: "rgba(255,255,255,0.85)"}}>
                                 Welcome to Our Comm<span className="animated-text">Unity</span>
                             </h1>
                             <p className="lead" style={{color: "rgba(255,255,255,0.85)"}}>
