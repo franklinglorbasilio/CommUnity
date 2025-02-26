@@ -64,8 +64,8 @@ export default function Homepages() {
           }
         `}
             </style>
-            <section className="d-flex align-items-center" style={{ minHeight: "100vh", width: "100vw" }}>   <ParticleNetwork />
-                <div className="container text-center text-lg-start" style={{ color: "rgba(255,255,255,0.85)" }}>
+            <section className="d-flex align-items-center" style={{ minHeight: "100vh", width: "100vw" }}>
+                <div className="container text-center text-lg-start" style={{ color: "rgba(255,255,255,0.85)" }}><ParticleNetwork />
                     <div className="row align-items-center">
                         <div className="col-12 col-lg-6 mb-4 mb-lg-0">
                             <h1 className="fw-bold display-4" style={{color: "rgba(255,255,255,0.85)"}}>

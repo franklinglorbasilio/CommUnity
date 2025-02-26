@@ -143,8 +143,10 @@ function ParticleNetwork() {
                 position: "absolute",
                 top: 0,
                 left: 0,
+                width: "100%",
+                height: "150vh",
                 zIndex: -1,
-                background: "#000" // black background
+                background: "#000"
             }}
         />
     );
