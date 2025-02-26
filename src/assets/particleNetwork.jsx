@@ -2,21 +2,16 @@ import React, { useRef, useEffect } from "react";
 
 function ParticleNetwork() {
     const canvasRef = useRef(null);
-    const particlesRef = useRef([]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
 
-        // Set canvas size dynamically based on Bootstrap container
-        const setCanvasSize = () => {
-            const container = canvas.parentElement; // Get Bootstrap parent
-            canvas.width = container.clientWidth; // Fit container width
-            canvas.height = container.clientHeight; // Fit container height
-        };
+        // Make the canvas fill the window
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-        setCanvasSize();
-
+        // Handle mouse position
         const mouse = { x: null, y: null };
 
         function handleMouseMove(e) {
@@ -25,24 +20,29 @@ function ParticleNetwork() {
         }
 
         function handleMouseOut() {
+            // If the mouse leaves the window, reset position
             mouse.x = null;
             mouse.y = null;
         }
 
+        // Update canvas size on window resize
         function handleResize() {
-            setCanvasSize();
-            particlesRef.current = createParticles(); // Recreate particles on resize
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
 
         window.addEventListener("mousemove", handleMouseMove);
         window.addEventListener("mouseout", handleMouseOut);
         window.addEventListener("resize", handleResize);
 
-        const numParticles = Math.max(50, Math.floor(canvas.width / 15)); // Responsive particle count
-        const maxDistance = 120;
-        const mouseDistance = 150;
-        const particleSpeed = 2;
+        // Particles settings
+        const particles = [];
+        const numParticles = 50;      // total number of particles
+        const maxDistance = 120;      // max distance to connect particles
+        const mouseDistance = 150;    // distance to connect to mouse
+        const particleSpeed = 2;      // movement speed
 
+        // Define a Particle class
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
@@ -56,6 +56,7 @@ function ParticleNetwork() {
                 this.x += this.vx;
                 this.y += this.vy;
 
+                // Bounce off edges
                 if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
             }
@@ -68,17 +69,16 @@ function ParticleNetwork() {
             }
         }
 
-        function createParticles() {
-            return Array.from({ length: numParticles }, () => new Particle());
+        // Initialize the particles
+        for (let i = 0; i < numParticles; i++) {
+            particles.push(new Particle());
         }
 
-        particlesRef.current = createParticles();
-
+        // Animation loop
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            const particles = particlesRef.current;
-
+            // Draw lines between particles
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
@@ -87,6 +87,7 @@ function ParticleNetwork() {
 
                     if (dist < maxDistance) {
                         ctx.beginPath();
+                        // Fade line based on distance
                         ctx.strokeStyle = `rgba(255, 255, 255, ${1 - dist / maxDistance})`;
                         ctx.lineWidth = 1;
                         ctx.moveTo(particles[i].x, particles[i].y);
@@ -96,6 +97,7 @@ function ParticleNetwork() {
                 }
             }
 
+            // Draw lines from particles to mouse if close
             if (mouse.x !== null && mouse.y !== null) {
                 for (let i = 0; i < particles.length; i++) {
                     const dx = particles[i].x - mouse.x;
@@ -113,6 +115,7 @@ function ParticleNetwork() {
                 }
             }
 
+            // Update and draw each particle
             particles.forEach((particle) => {
                 particle.update();
                 particle.draw();
@@ -121,8 +124,10 @@ function ParticleNetwork() {
             requestAnimationFrame(animate);
         }
 
+        // Start animation
         animate();
 
+        // Cleanup on unmount
         return () => {
             window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("mouseout", handleMouseOut);
@@ -131,21 +136,17 @@ function ParticleNetwork() {
     }, []);
 
     return (
-        <div className="container-fluid position-relative p-0">
-            <canvas
-                ref={canvasRef}
-                style={{
-                    display: "block",
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%", // Use Bootstrap container width
-                    height: "100vh", // Full viewport height
-                    zIndex: -1,
-                    background: "#000",
-                }}
-            />
-        </div>
+        <canvas
+            ref={canvasRef}
+            style={{
+                display: "block",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                zIndex: -1,
+                background: "#000" // black background
+            }}
+        />
     );
 }
 

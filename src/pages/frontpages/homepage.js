@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import ParticleNetwork from "../../assets/particleNetwork.jsx";
 
 const testimonials = [
@@ -63,8 +64,7 @@ export default function Homepages() {
           }
         `}
             </style>
-            <ParticleNetwork />
-            <section className="d-flex align-items-center" style={{ minHeight: "100vh", width: "100vw" }}>
+            <section className="d-flex align-items-center" style={{ minHeight: "100vh", width: "100vw" }}>   <ParticleNetwork />
                 <div className="container text-center text-lg-start" style={{ color: "rgba(255,255,255,0.85)" }}>
                     <div className="row align-items-center">
                         <div className="col-12 col-lg-6 mb-4 mb-lg-0">
