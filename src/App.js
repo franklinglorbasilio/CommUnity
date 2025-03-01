@@ -7,6 +7,10 @@ import CommunityPage from "./pages/frontpages/Communitypage";
 import CommunityProject from "./pages/frontpages/CommunityProject";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CommUnity from "./pages/frontpages/CommUnity";
+<<<<<<< HEAD
+=======
+import ProjectList from "./pages/frontpages/ProjectList";
+>>>>>>> 406847c (Fix line endings)
 import TestimonialPage from "./pages/frontpages/Testimonial";
 
 function App() {
@@ -43,6 +47,10 @@ function App() {
         <AboutCommunity />
         <CommunityPage />
         <CommunityProject />
+<<<<<<< HEAD
+=======
+          <ProjectList/>
+>>>>>>> 406847c (Fix line endings)
         <TestimonialPage />
       </>
   );
