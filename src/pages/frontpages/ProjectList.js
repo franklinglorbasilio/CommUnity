@@ -13,7 +13,88 @@ const projects = Array.from({ length: 12 }, (_, i) => ({
 export default function ProjectList() {
     const [visibleProjects, setVisibleProjects] = useState(6);
     const [loading, setLoading] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+    const [rippleStyle, setRippleStyle] = useState({});
 
+    const buttonStyle = {
+        position: "relative",
+        overflow: "hidden",
+        padding: "12px 30px",
+        fontSize: "16px",
+        fontWeight: "600",
+        textTransform: "uppercase",
+        color: "white",
+        background: "linear-gradient(45deg, #6a11cb, #2575fc)", // Gradient background
+        border: "none",
+        borderRadius: "50px", // Rounded corners for a modern look
+        cursor: loading ? "not-allowed" : "pointer",
+        transition: "all 0.3s ease-in-out",
+        boxShadow: isHovered && !loading ? "0 5px 15px rgba(0, 0, 0, 0.2)" : "none",
+        transform: isHovered && !loading ? "scale(1.05)" : "scale(1)",
+    };
+
+    const rippleEffect = (e) => {
+        if (loading) return;
+        const button = e.target;
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        setRippleStyle({
+            width: size,
+            height: size,
+            left: `${x}px`,
+            top: `${y}px`,
+            opacity: "0.5",
+            position: "absolute",
+            background: "rgba(255, 255, 255, 0.4)",
+            borderRadius: "50%",
+            pointerEvents: "none",
+            animation: "ripple 0.6s ease-out",
+        });
+
+        setTimeout(() => {
+            setRippleStyle({});
+        }, 600);
+    };
+
+    const spinnerStyle = {
+        animation: "spin 1s linear infinite",
+        marginRight: "10px",
+    };
+
+    // Inject keyframes for ripple and spinner animations directly
+    const rippleKeyframes = `
+    @keyframes ripple {
+      0% {
+        transform: scale(0);
+        opacity: 0.4;
+      }
+      100% {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+  `;
+
+    const spinnerKeyframes = `
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  `;
+
+    // Inject keyframes into the document head
+    React.useEffect(() => {
+        const styleSheet = document.styleSheets[0];
+        styleSheet.insertRule(rippleKeyframes, styleSheet.cssRules.length);
+        styleSheet.insertRule(spinnerKeyframes, styleSheet.cssRules.length);
+    }, []);
     useEffect(() => {
         AOS.init({ duration: 1000 });
     }, []);
@@ -93,21 +174,41 @@ export default function ProjectList() {
                         ))}
                     </div>
                 ))}
-                {visibleProjects < projects.length && (
+                { visibleProjects < projects.length && (
                     <button
-                        onClick={handleViewMore}
-                        className="btn btn-primary mt-4"
+                        onClick={(e) => {
+                            handleViewMore(e);
+                            rippleEffect(e); // Apply ripple effect on button click
+                        }}
+                        style={buttonStyle}
                         disabled={loading}
-                        style={{ position: "relative", overflow: "hidden" }}
+                        className="mt-4"
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
                     >
                         {loading ? (
                             <>
-                                <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            <span
+                className="spinner-border spinner-border-sm me-2"
+                style={spinnerStyle}
+                role="status"
+                aria-hidden="true"
+            ></span>
                                 Loading...
                             </>
                         ) : (
                             "View More"
                         )}
+                        {/* Ripple Effect */}
+                        <span
+                            style={{
+                                ...rippleStyle,
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                pointerEvents: "none",
+                            }}
+                        ></span>
                     </button>
                 )}
             </div>
