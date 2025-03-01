@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-export default function TestimonialPage(){
-    return (
-    <div></div>
-=======
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
@@ -52,6 +47,5 @@ export default function TestimonialPage() {
             </div>
         </div>
         </section>
->>>>>>> 406847c (Fix line endings)
     );
 }

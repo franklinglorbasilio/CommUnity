@@ -27,7 +27,7 @@ export default function ProjectList() {
     };
 
     return (
-        <section className={"bg-black"} style={{ textAlign: "center", paddingTop: "50px" }}>
+        <section className="bg-black" style={{ textAlign: "center", paddingTop: "50px" }}>
             <div className="container">
                 {Array.from({ length: Math.ceil(visibleProjects / 3) }, (_, rowIndex) => (
                     <div className="row justify-content-center" key={rowIndex}>
@@ -39,15 +39,24 @@ export default function ProjectList() {
                                         overflow: "hidden",
                                         borderRadius: "15px",
                                         boxShadow: "0 6px 12px rgba(0, 0, 0, 0.3)",
-                                        transition: "transform 0.3s ease-in-out",
+                                        transition: "transform 0.3s ease-in-out, background-color 0.3s ease-in-out",
                                         textAlign: "center",
-                                        cursor: "pointer"
+                                        cursor: "pointer",
+                                        backgroundColor: "white"
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = "scale(1.05)";
+                                        e.currentTarget.style.backgroundColor = "white";
+                                        e.currentTarget.querySelector(".overlay").style.opacity = "0";
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = "scale(1)";
+                                        e.currentTarget.querySelector(".overlay").style.opacity = "1";
                                     }}
                                 >
                                     <img
                                         src={project.image}
                                         alt={project.title}
-                                        className="project-img"
                                         style={{
                                             width: "100%",
                                             height: "auto",
@@ -71,7 +80,9 @@ export default function ProjectList() {
                                             color: "white",
                                             padding: "15px",
                                             borderRadius: "15px",
-                                            textAlign: "center"
+                                            textAlign: "center",
+                                            opacity: "1",
+                                            transition: "opacity 0.3s ease-in-out"
                                         }}
                                     >
                                         <h5 style={{ fontSize: "1.8rem", fontWeight: "bold", marginBottom: "10px" }}>{project.title}</h5>
