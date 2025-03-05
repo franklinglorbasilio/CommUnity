@@ -7,26 +7,26 @@ import MainHome from "./pages/frontpages/MainHome";
 import CommUnity from "./pages/CommUnity"; // ✅ Ensure correct path
 
 function App() {
-    // useEffect(() => {
-    //     const handleContextMenu = (e) => e.preventDefault();
-    //     const handleKeyDown = (e) => {
-    //         if (
-    //             (e.ctrlKey && e.shiftKey && ["I", "J"].includes(e.key)) ||
-    //             (e.ctrlKey && e.key === "U") ||
-    //             e.key === "F12"
-    //         ) {
-    //             e.preventDefault();
-    //         }
-    //     };
-    //
-    //     document.addEventListener("contextmenu", handleContextMenu);
-    //     document.addEventListener("keydown", handleKeyDown);
-    //
-    //     return () => {
-    //         document.removeEventListener("contextmenu", handleContextMenu);
-    //         document.removeEventListener("keydown", handleKeyDown);
-    //     };
-    // }, []);
+    useEffect(() => {
+        const handleContextMenu = (e) => e.preventDefault();
+        const handleKeyDown = (e) => {
+            if (
+                (e.ctrlKey && e.shiftKey && ["I", "J"].includes(e.key)) ||
+                (e.ctrlKey && e.key === "U") ||
+                e.key === "F12"
+            ) {
+                e.preventDefault();
+            }
+        };
+
+        document.addEventListener("contextmenu", handleContextMenu);
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("contextmenu", handleContextMenu);
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, []);
 
     return (
         <Router> {/* ✅ Wrapped inside Router */}
