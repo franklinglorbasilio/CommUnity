@@ -17,12 +17,7 @@ const CommunityProject = () => {
         AOS.refresh();
     }, []);
 
-    const projects = [
-        { name: "System Alpha", description: "A cutting-edge platform for seamless communication." },
-        { name: "System Beta", description: "An AI-powered analytics tool for businesses." },
-        { name: "System Gamma", description: "A cloud-based collaboration suite for teams." },
-        { name: "System Delta", description: "A secure and scalable e-commerce framework." }
-    ];
+
     const articles = [
         {
             title: "The Best Web Design Software Companies for 2025",
@@ -142,7 +137,7 @@ const CommunityProject = () => {
                                 </a>
                             ))}
                             <a
-                                href="#"
+                                href="/articles"
                                 className="text-indigo-400 fw-semibold d-block mt-3 text-center"
                                 style={{fontSize: "0.95rem"}}
                                 onMouseEnter={(e) => (e.target.style.color = "#C4B5FD")}
@@ -152,11 +147,11 @@ const CommunityProject = () => {
                             </a>
                         </Card.Body>
                     </Card>
-                        <Card
-                            className="text-black p-4 shadow-lg border-0 mt-4"
-                            style={{
-                                background: "white",
-                                borderRadius: "16px",
+                    <Card
+                        className="text-black p-4 shadow-lg border-0 mt-4"
+                        style={{
+                            background: "white",
+                            borderRadius: "16px",
                                 boxShadow: "0 8px 15px rgba(0, 0, 0, 0.2)",
                             }}
                             data-aos="fade-up"

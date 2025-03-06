@@ -5,6 +5,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LogoCom from "../assets/community-icon.png";
+
 export default function Footerpage() {
     useEffect(() => {
         AOS.init({ duration: 1000 });
@@ -71,11 +72,12 @@ export default function Footerpage() {
                     </Col>
                     <Col xs={12} md={3}>
                         <h6>Follow Us</h6>
-                        <a href="#" className="text-light mx-2 footer-social"><FaFacebook size={24} /></a>
-                        <a href="#" className="text-light mx-2 footer-social"><FaTwitter size={24} /></a>
-                        <a href="#" className="text-light mx-2 footer-social"><FaInstagram size={24} /></a>
-                        <a href="#" className="text-light mx-2 footer-social"><FaLinkedin size={24} /></a>
-                        <a href="#" className="text-light mx-2 footer-social"><FaYoutube size={24} /></a>
+                        {/* Updated links for valid href attributes */}
+                        <a href="https://www.facebook.com/your-profile" className="text-light mx-2 footer-social"><FaFacebook size={24} /></a>
+                        <a href="https://twitter.com/your-profile" className="text-light mx-2 footer-social"><FaTwitter size={24} /></a>
+                        <a href="https://www.instagram.com/your-profile" className="text-light mx-2 footer-social"><FaInstagram size={24} /></a>
+                        <a href="https://www.linkedin.com/in/your-profile" className="text-light mx-2 footer-social"><FaLinkedin size={24} /></a>
+                        <a href="https://www.youtube.com/channel/your-channel" className="text-light mx-2 footer-social"><FaYoutube size={24} /></a>
                     </Col>
                 </Row>
                 <Row className="text-center mt-3">

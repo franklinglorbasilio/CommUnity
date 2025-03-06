@@ -90,11 +90,12 @@ export default function ProjectList() {
   `;
 
     // Inject keyframes into the document head
-    React.useEffect(() => {
+    useEffect(() => {
         const styleSheet = document.styleSheets[0];
         styleSheet.insertRule(rippleKeyframes, styleSheet.cssRules.length);
         styleSheet.insertRule(spinnerKeyframes, styleSheet.cssRules.length);
-    }, []);
+    }, [rippleKeyframes, spinnerKeyframes]); // Add dependencies
+
     useEffect(() => {
         AOS.init({ duration: 1000 });
     }, []);

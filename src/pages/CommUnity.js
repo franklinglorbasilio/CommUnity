@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Row, Col, Card, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaPlay, FaRedo } from "react-icons/fa";
 import { FaClipboard as ClipboardIcon } from "react-icons/fa";
 import {
-    FaShoppingCart, FaComments, FaLightbulb, FaCogs, FaHistory, FaChartLine,
+    FaShoppingCart, FaComments, FaLightbulb, FaHistory, FaChartLine,
     FaGlobe, FaUsers, FaChalkboardTeacher, FaUniversalAccess, FaUserGraduate, FaTrophy,
     FaQuestionCircle, FaProjectDiagram, FaUserTie, FaBookOpen
 } from "react-icons/fa";
@@ -31,7 +31,7 @@ export default function Community() {
                 originalConsoleLog(...args);
             };
 
-            const result = eval(code);
+            const result = (code);
             setOutput(consoleOutput.length > 0 ? consoleOutput.join("\n") : (result !== undefined ? result.toString() : "Code executed successfully!"));
 
             console.log = originalConsoleLog; // Restore console.log
